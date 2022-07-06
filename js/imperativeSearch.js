@@ -1,4 +1,4 @@
-function searchImperativeProgramming(userInput){
+function imperativeSearchProgramming(userInput){
 
     return new Promise((resolve, reject)=> {
          
