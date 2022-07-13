@@ -4,9 +4,9 @@ function imperativeSearchProgramming(userInput){
          
         userInput = normalizeString(userInput);
 
-        function resultRecipesName (){
+        function resultRecipesName(){
 
-            const resultRecipesName = [];
+            const recipesName = [];
 
             return new Promise((resolve, reject)=>{
 
@@ -15,78 +15,83 @@ function imperativeSearchProgramming(userInput){
                 for(let i=0; i<j; i++){
 
                     if(recipes[i].name.toLowerCase().includes(userInput) === true) {
-// La méthode push() ajoute un ou plusieurs éléments à la fin d'un tableau et retourne la nouvelle taille du tableau.
+                        // La méthode push() ajoute un ou plusieurs éléments à la fin d'un tableau et retourne la nouvelle taille du tableau.
 
-                        return resultRecipesName.push(recipes[i]);
+                        recipesName.push(recipes[i]);
 
                     }
 
                 }
-
-                return resolve(resultRecipesName)
-
+    
+                return resolve(recipesName);
                 
-            })
+            });
         }
         
         function resultRecipesIngredients(){
 
             return new Promise((resolve, reject)=>{
 
-                const resultRecipesIngredients = [];
+                const resultIngredients = [];
 
                 const j = recipes.length;
 
                 for(let i=0; i<j; i++){
 
+
                     let isOnIngredients = false;
 
-                    const recipeIngredient = recipe.ingredients.length;
-                    
-                    // const recipeIngredient = recipe.ingredient.length;
+                    const l = recipes[i].ingredients.length;
 
-                    for(let i=0; i<recipeIngredient; i++){
+                    for(let k=0; k<l; k++){
 
-                        if (recipeIngredient.ingredient.toLowerCase().include(userInput) === true){
+                          if(recipes[i].ingredients[k].ingredient.toLowerCase().includes(userInput) === true){
 
-                            isOnIngredients = true;
-                        }
-                    }; 
-                    
-                    if(isOnIngredients === true) {
+                              isOnIngredients = true;
 
-                        return resultRecipesIngredients.push(recipes[i]);
+                          }
+
                     }
+
+                    if(isOnIngredients === true){
+                                
+                         resultIngredients.push(recipes[i]);
+        
+                    }
+
+                  
+
                 }
-                
-                });
-            
-                return  resolve(resultRecipesIngredients);
+
+                return resolve(resultIngredients);
+
+            });
             
         }
 
         function resultRecipesDescription(){
 
-            const resultRecipesDescription = [];
-
             return new Promise((resolve, reject)=>{
-    
-                const j = recipes.length;
-    
-                for(let i=0; i<j; i++){
-                    if(recipes[i].description.toLowerCase().includes(userInput) === true){
 
-                        resultRecipesDescription.push(recipes[i]);
-                        }
+                const recipesDescription = [];
+
+                const j = recipes.length;
+
+                for(let i=0; i<j; i++){
+
+                    if(recipes[i].description.toLocaleLowerCase().includes(userInput) === true){
+
+                            recipesDescription.push(recipes[i]);
 
                     }
+                }
 
-                    resolve(resultRecipesDescription);
+                return resolve(recipesDescription);
             
-                });
+            });
         }
 
-        Promise.all([resultRecipesName(), resultRecipesIngredients(), resultRecipesDescription()]).then((result)=>{
+        Promise.all([resultRecipesName(), resultRecipesIngredients(),resultRecipesDescription()]).then((result)=>{
             //  operateur spread permet en ajoutant ... devant un tableau ou une itération de récupérer ts les éléments d'un tableau
             // ci-dessous concaténation des ts les éléments des tableaux result dont l'index est 0 1 et 2.
                 result = [...result[0], ...result[1], ...result[2]];
