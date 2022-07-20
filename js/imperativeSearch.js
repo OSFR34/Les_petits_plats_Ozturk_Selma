@@ -94,6 +94,8 @@ function imperativeSearchProgramming(userInput){
         Promise.all([resultRecipesName(), resultRecipesIngredients(),resultRecipesDescription()]).then((result)=>{
             //  operateur spread permet en ajoutant ... devant un tableau ou une itération de récupérer ts les éléments d'un tableau
             // ci-dessous concaténation des ts les éléments des tableaux result dont l'index est 0 1 et 2.
+
+                console.log(result)
                 result = [...result[0], ...result[1], ...result[2]];
     
                 if(result.length === 0){
