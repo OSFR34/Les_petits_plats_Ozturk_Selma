@@ -15,7 +15,7 @@ for (let i=0; i<recipes.length; i++) {
     });
 }
 const ingredientsNoDuplicates = new Set(allIngredients);
-// console.log(ingredientsNoDuplicates);
+
 
 // RECUPERE LA LISTE DE TOUS LES APPAREILS
 
@@ -42,4 +42,85 @@ for (const element of ustensilsNoDuplicates) {
     // console.log(element.toLowerCase());
 }
 
-// console.log(ustensilsNoDuplicates);
+
+
+function fillIngredients(ingredientsArray){
+
+       return new Promise((resolve)=>{
+
+
+            let html = "";
+
+            ingredientsArray.forEach((ingredient)=>{
+    
+                html+= `
+                
+                        <span>${ingredient}</span>
+                
+                `;
+    
+            });
+    
+            document.querySelector("#summary-content-ingredients").innerHTML = html;
+
+
+       });
+
+}
+
+function fillAppliances(appliancesArray){
+
+
+    return new Promise((resolve)=>{
+
+
+        let html = "";
+
+        appliancesArray.forEach((appliance)=>{
+
+            html+= `
+            
+                    <span>${appliance}</span>
+            
+            `;
+
+        });
+
+        document.querySelector("#summary-content-appliances").innerHTML = html;
+
+
+   });
+
+}
+
+function fillUstensils(ustensilsArray){
+
+
+    return new Promise((resolve)=>{
+
+
+        let html = "";
+
+        ustensilsArray.forEach((ustensil)=>{
+
+            html+= `
+            
+                    <span>${ustensil}</span>
+            
+            `;
+
+        });
+
+        document.querySelector("#summary-content-ustensils").innerHTML = html;
+
+
+   });
+
+}
+
+
+Promise.all([fillIngredients(ingredientsNoDuplicates), fillAppliances(appliancesNoDuplicates), fillUstensils(ustensilsNoDuplicates)]).then((result)=>{
+
+
+
+});
