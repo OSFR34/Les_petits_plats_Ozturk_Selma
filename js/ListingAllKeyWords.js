@@ -14,7 +14,7 @@ for (let i=0; i<recipes.length; i++) {
         
     });
 }
-const ingredientsNoDuplicates = new Set(allIngredients);
+const ingredientsNoDuplicates = Array.from(new Set(allIngredients));
 
 
 // RECUPERE LA LISTE DE TOUS LES APPAREILS
@@ -24,7 +24,7 @@ for (let i=0; i<recipes.length; i++) {
     let appliances = recipes [i].appliance;
     allAppliances.push(appliances);
 }
-const appliancesNoDuplicates = new Set(allAppliances);
+const appliancesNoDuplicates = Array.from(new Set(allAppliances));
 // console.log(appliancesNoDuplicates);
 
 // RECUPERE LA LISTE DE TOUS LES USTENSILES
@@ -35,7 +35,7 @@ for (let i=0; i<recipes.length; i++) {
     allUstensils.push(ustensils);
 };
 
-const ustensilsNoDuplicates = new Set(allUstensils.flat());
+const ustensilsNoDuplicates = Array.from(new Set(allUstensils.flat()));
 
 
 for (const element of ustensilsNoDuplicates) {
@@ -55,13 +55,15 @@ function fillIngredients(ingredientsArray){
     
                 html+= `
                 
-                        <span>${ingredient}</span>
+                        <li>${ingredient}</li>
                 
                 `;
     
             });
     
-            document.querySelector("#summary-content-ingredients").innerHTML = html;
+            document.querySelector("#liste-ingredients").innerHTML = html;
+
+            resolve("Ingredients ajoutes");
 
 
        });
@@ -80,13 +82,15 @@ function fillAppliances(appliancesArray){
 
             html+= `
             
-                    <span>${appliance}</span>
+                    <li>${appliance}</li>
             
             `;
 
         });
 
-        document.querySelector("#summary-content-appliances").innerHTML = html;
+        document.querySelector("#liste-appareils").innerHTML = html;
+
+        resolve("Appareils ajoutes");
 
 
    });
@@ -98,20 +102,21 @@ function fillUstensils(ustensilsArray){
 
     return new Promise((resolve)=>{
 
-
         let html = "";
 
         ustensilsArray.forEach((ustensil)=>{
 
             html+= `
             
-                    <span>${ustensil}</span>
+                    <li>${ustensil}</li>
             
             `;
 
         });
 
-        document.querySelector("#summary-content-ustensils").innerHTML = html;
+        document.querySelector("#liste-ustensiles").innerHTML = html;
+
+        resolve("Ustensiles ajoutes");
 
 
    });
@@ -120,7 +125,9 @@ function fillUstensils(ustensilsArray){
 
 
 Promise.all([fillIngredients(ingredientsNoDuplicates), fillAppliances(appliancesNoDuplicates), fillUstensils(ustensilsNoDuplicates)]).then((result)=>{
+        
+        const arrayOfAllElements = [ingredientsNoDuplicates, appliancesNoDuplicates, ustensilsNoDuplicates]
 
-
+        handleTags(arrayOfAllElements);
 
 });
