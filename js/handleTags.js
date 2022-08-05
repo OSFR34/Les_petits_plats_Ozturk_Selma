@@ -21,6 +21,12 @@ function handleTags(arrayOfAllElements){
           }
         
     });
+    document.querySelector(".img_croix").addEventListener("click", (event) => {
+        if(event.target !== event.currentTarget){
+          const e = document.querySelector(".tag");
+        e.parentElement.removeChild(e);
+      }
+    })
 
     document.querySelector("#liste-appareils").addEventListener("click", (event)=>{
       
