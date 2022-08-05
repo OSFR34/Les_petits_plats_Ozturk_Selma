@@ -21,14 +21,8 @@ function handleTags(arrayOfAllElements){
           }
         
     });
-    // Deneme Latif
-    document.querySelector(".img_croix").addEventListener("click", (event) => {
-        if(event.target !== event.currentTarget){
-          const e = document.querySelector(".tag");
-        e.parentElement.removeChild(e);
-      }
-    })
-    // son deneme latif
+  
+    
 
     document.querySelector("#liste-appareils").addEventListener("click", (event)=>{
       
