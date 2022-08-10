@@ -1,4 +1,10 @@
-function handleTags(arrayOfAllElements){
+function handleTags(arrayOfAllElements, arrayOfRecipes){
+
+     const parentListeIngredients = document.querySelector("#liste-ingredients");
+
+     let oldValueArrayOfRecipes;
+
+     const copyArrayOfRecipes = [...arrayOfRecipes];
 
     /* ArrayOfAllElements[0] c'est le tableau des ingredients
 
@@ -8,24 +14,33 @@ function handleTags(arrayOfAllElements){
 
     */
 
-    document.querySelector("#liste-ingredients").addEventListener("click", (event)=>{
+    parentListeIngredients.onclick = (event)=>{
 // !== inégalité strite 
 // La propriété currentTarget fait toujours référence à l'élément dont l'écouteur d'événement a déclenché l'événement, par opposition à la propriété target , qui renvoie l'élément qui a déclenché l'événement.  
           if(event.target !== event.currentTarget){
 // récupération du texte de l'événement cible
               const ingredient = event.target.textContent;
 // La méthode Element.remove() retire l'élément courant du DOM.
-              event.target.remove();
+            //   event.target.remove();
 
               displayTag(ingredient, "Ingredients");
 
+              oldValueArrayOfRecipes = [...arrayOfRecipes];
+
+              arrayOfRecipes = filterIngredients(arrayOfRecipes,ingredient);
+
+              displayRecipes(arrayOfRecipes) //même résultat en mettant displayRecipes(result) result est le même que celui en fin de la page searchFunctionnalProgramming.js
+
+              listingAllKeywords(arrayOfRecipes);
+
+              deleteTag();
           }
         
-    });
+    };
   
     
 
-    document.querySelector("#liste-appareils").addEventListener("click", (event)=>{
+    document.querySelector("#liste-appareils").onclick = (event)=>{
       
         if(event.target !== event.currentTarget){
 
@@ -35,21 +50,9 @@ function handleTags(arrayOfAllElements){
 
         }
       
-    });
+    };
 
-    document.querySelector("#liste-appareils").addEventListener("click", (event)=>{
-      
-        if(event.target !== event.currentTarget){
-
-            const appareil = event.target.textContent;
-
-            displayTag(appareil, "Appareils");
-
-        }
-      
-    });
-
-    document.querySelector("#liste-ustensiles").addEventListener("click", (event)=>{
+    document.querySelector("#liste-ustensiles").onclick = (event)=>{
       
         if(event.target !== event.currentTarget){
 
@@ -59,7 +62,7 @@ function handleTags(arrayOfAllElements){
 
         }
       
-    });
+    };
 
 
     function displayTag(tagName, tagCategory){
@@ -87,7 +90,7 @@ function handleTags(arrayOfAllElements){
 
         const tag = `
         
-        <div class="tag" style= "background-color:${color}">
+        <div class="tag" style= "background-color:${color}" data-category="${tagCategory}">
           
             <span>${tagName}</span>
        
@@ -102,6 +105,31 @@ function handleTags(arrayOfAllElements){
     }
 
 
+    function deleteTag(){
+
+        document.querySelector("#tags").onclick = (event)=>{
+
+             if(event.target !== event.currentTarget){
+
+                   if(event.target.className === "img_croix"){
+
+                        const tag = event.target.parentNode;
+                         
+                        tag.remove();
+
+                        displayRecipes(oldValueArrayOfRecipes);
+
+                        return listingAllKeywords(oldValueArrayOfRecipes);
+
+                   }
+
+             }
+
+        }
+
+    }
+
+
     function getTheUserinput(){
 
          const allinputs = document.querySelectorAll(".filters-tags-area-input");
@@ -111,7 +139,7 @@ function handleTags(arrayOfAllElements){
 
                 input.addEventListener("input", ()=>{
                     // input.value permet de récupérer les caractères saisies dans l'input
-                     
+
                       const filteredArray = filterDetails(input.value, arrayOfAllElements[index]);
 
                       const inputNextSiblingUl = input.nextElementSibling;
@@ -125,6 +153,8 @@ function handleTags(arrayOfAllElements){
     } 
 
     getTheUserinput();
+
+    
 
 
 }

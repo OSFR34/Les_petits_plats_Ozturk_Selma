@@ -4,6 +4,8 @@ document.addEventListener("DOMContentLoaded", ()=>{
 
     displayRecipes(recipes);
 
+    listingAllKeywords(recipes);
+
     const userInput = document.querySelector("#search");
 
 
@@ -12,9 +14,17 @@ document.addEventListener("DOMContentLoaded", ()=>{
         // test : concole.log(this.value) 
 
         // ici this vaut userInput - si la valeur est inférieur à 3 caractères, on ne fait rien
-           if(this.value.length < 3){
+           if(this.value.length < 3 && this.value.length > 0){
 
                  return false;
+
+           }
+
+           if(this.value.length === 0){
+
+                displayRecipes(recipes);
+
+                return listingAllKeywords(recipes);
 
            }
 
@@ -25,10 +35,13 @@ document.addEventListener("DOMContentLoaded", ()=>{
                 const resultMessage = `<p id="message_no_recipes">Aucune recette ne correspond à votre critère…    Vous pouvez
                 chercher "tarte aux pommes", "poisson", etc.
                 </p>`;
-                return displayNoRecipes(resultMessage)
+                return displayNoRecipes(resultMessage);
             }
 
-               return  displayRecipes(response) //même résultat en mettant displayRecipes(result) result est le même que celui en fin de la page searchFunctionnalProgramming.js
+               displayRecipes(response) //même résultat en mettant displayRecipes(result) result est le même que celui en fin de la page searchFunctionnalProgramming.js
+
+               listingAllKeywords(response);
+
 
            });
 
