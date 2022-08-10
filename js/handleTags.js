@@ -110,7 +110,7 @@ function handleTags(arrayOfAllElements){
          allinputs.forEach((input, index)=>{
 
                 input.addEventListener("input", ()=>{
-// input.value permet de récupérer les caractères saisies dans l'input
+                    // input.value permet de récupérer les caractères saisies dans l'input
                      
                       const filteredArray = filterDetails(input.value, arrayOfAllElements[index]);
 
@@ -120,7 +120,7 @@ function handleTags(arrayOfAllElements){
 
                 });
 
-         })
+         });
 
     } 
 
