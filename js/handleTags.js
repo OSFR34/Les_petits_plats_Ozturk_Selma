@@ -9,11 +9,12 @@ function handleTags(arrayOfAllElements){
     */
 
     document.querySelector("#liste-ingredients").addEventListener("click", (event)=>{
-      
+// !== inégalité strite 
+// La propriété currentTarget fait toujours référence à l'élément dont l'écouteur d'événement a déclenché l'événement, par opposition à la propriété target , qui renvoie l'élément qui a déclenché l'événement.  
           if(event.target !== event.currentTarget){
-
+// récupération du texte de l'événement cible
               const ingredient = event.target.textContent;
-
+// La méthode Element.remove() retire l'élément courant du DOM.
               event.target.remove();
 
               displayTag(ingredient, "Ingredients");
@@ -23,6 +24,18 @@ function handleTags(arrayOfAllElements){
     });
   
     
+
+    document.querySelector("#liste-appareils").addEventListener("click", (event)=>{
+      
+        if(event.target !== event.currentTarget){
+
+            const appareil = event.target.textContent;
+
+            displayTag(appareil, "Appareils");
+
+        }
+      
+    });
 
     document.querySelector("#liste-appareils").addEventListener("click", (event)=>{
       
@@ -92,10 +105,12 @@ function handleTags(arrayOfAllElements){
     function getTheUserinput(){
 
          const allinputs = document.querySelectorAll(".filters-tags-area-input");
+// le deuxième paramètre index va permettre à la fctio filterDetails de savoir sur quel tableau il doit aller chez les éléments
 
          allinputs.forEach((input, index)=>{
 
                 input.addEventListener("input", ()=>{
+// input.value permet de récupérer les caractères saisies dans l'input
                      
                       const filteredArray = filterDetails(input.value, arrayOfAllElements[index]);
 
@@ -107,7 +122,7 @@ function handleTags(arrayOfAllElements){
 
          })
 
-    }
+    } 
 
     getTheUserinput();
 

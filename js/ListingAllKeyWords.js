@@ -14,6 +14,8 @@ for (let i=0; i<recipes.length; i++) {
         
     });
 }
+// Ajout de  Array.from pour de créer un nouveau tableau à partir d'un autre. 
+// dans la console obtient array au lieu de set
 const ingredientsNoDuplicates = Array.from(new Set(allIngredients));
 
 
@@ -63,7 +65,7 @@ function fillIngredients(ingredientsArray){
     
             document.querySelector("#liste-ingredients").innerHTML = html;
 
-            resolve("Ingredients ajoutes");
+            resolve("Ingredients ajoutés");
 
 
        });
@@ -90,7 +92,7 @@ function fillAppliances(appliancesArray){
 
         document.querySelector("#liste-appareils").innerHTML = html;
 
-        resolve("Appareils ajoutes");
+        resolve("Appareils ajoutés");
 
 
    });
@@ -116,7 +118,7 @@ function fillUstensils(ustensilsArray){
 
         document.querySelector("#liste-ustensiles").innerHTML = html;
 
-        resolve("Ustensiles ajoutes");
+        resolve("Ustensiles ajoutés");
 
 
    });
