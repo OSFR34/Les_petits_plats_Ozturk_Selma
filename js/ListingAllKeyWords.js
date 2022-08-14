@@ -51,11 +51,7 @@ function listingAllKeywords(arrayOfRecipes){
 
                 ingredientsArray.forEach((ingredient)=>{
         
-                    html+= `
-                    
-                            <li>${ingredient}</li>
-                    
-                    `;
+                    html+= `<li>${ingredient}</li>`;
         
                 });
         

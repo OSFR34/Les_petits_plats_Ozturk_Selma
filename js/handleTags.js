@@ -2,6 +2,11 @@ function handleTags(arrayOfAllElements, arrayOfRecipes){
 
      const parentListeIngredients = document.querySelector("#liste-ingredients");
 
+     const parentListeAppareils = document.querySelector("#liste-appareils");
+
+     const parentListeUstensiles = document.querySelector("#liste-ustensiles");
+// ajout de cette variable pour pouvoir récupérer l'ancienne valeur tableau des ingrédients avant la recherche, ainsi lorsque l'on cliquera sur la croix du tag, ça entrainera en plus de fermeture du tag, l'affichage des recettes avant la recherche.
+
      let oldValueArrayOfRecipes;
 
      const copyArrayOfRecipes = [...arrayOfRecipes];
@@ -13,7 +18,7 @@ function handleTags(arrayOfAllElements, arrayOfRecipes){
        ArrayOfAllElements[2] c'est le tableau des ustensiles
 
     */
-
+// fonctionnement au clique sur la recherche des ingrédients
     parentListeIngredients.onclick = (event)=>{
 // !== inégalité strite 
 // La propriété currentTarget fait toujours référence à l'élément dont l'écouteur d'événement a déclenché l'événement, par opposition à la propriété target , qui renvoie l'élément qui a déclenché l'événement.  
@@ -23,7 +28,7 @@ function handleTags(arrayOfAllElements, arrayOfRecipes){
 // La méthode Element.remove() retire l'élément courant du DOM.
             //   event.target.remove();
 
-              displayTag(ingredient, "Ingredients");
+              displayTag(ingredient, "Ingredients"); 
 
               oldValueArrayOfRecipes = [...arrayOfRecipes];
 
@@ -40,7 +45,7 @@ function handleTags(arrayOfAllElements, arrayOfRecipes){
   
     
 
-    document.querySelector("#liste-appareils").onclick = (event)=>{
+    parentListeAppareils.onclick = (event)=>{
       
         if(event.target !== event.currentTarget){
 
@@ -48,17 +53,37 @@ function handleTags(arrayOfAllElements, arrayOfRecipes){
 
             displayTag(appareil, "Appareils");
 
+            oldValueArrayOfRecipes = [...arrayOfRecipes];
+
+            arrayOfAppareils = filterAppareils(arrayOfRecipes, appareil);
+
+            displayRecipes(arrayOfRecipes) 
+
+            listingAllKeywords(arrayOfAppareils);
+
+            deleteTag();
+
         }
       
     };
 
-    document.querySelector("#liste-ustensiles").onclick = (event)=>{
+    parentListeUstensiles.onclick = (event)=>{
       
         if(event.target !== event.currentTarget){
 
             const ustensile = event.target.textContent;
 
             displayTag(ustensile, "Ustensiles");
+
+            oldValueArrayOfRecipes = [...arrayOfRecipes];
+
+            arrayOfUstensiles = filterUstensiles(arrayOfRecipes, ustensile);
+
+            displayRecipes(arrayOfRecipes) 
+
+            listingAllKeywords(arrayOfUstensiles);
+
+            deleteTag();
 
         }
       
@@ -104,21 +129,21 @@ function handleTags(arrayOfAllElements, arrayOfRecipes){
 
     }
 
-
+// FERMETURE DES TAGS
     function deleteTag(){
-
+// je place un clique sur le parent de tous les tags
         document.querySelector("#tags").onclick = (event)=>{
-
+// si je clique sur le parent et que je touche un de ses enfant 
              if(event.target !== event.currentTarget){
-
+// si ma cible est égale à "img_croix")
                    if(event.target.className === "img_croix"){
-
+// / récupère le parent de la cible 
                         const tag = event.target.parentNode;
-                         
+                        // je retire le tag 
                         tag.remove();
-
+// j'affiche l'ancienne valeur du tableaux des recettes 
                         displayRecipes(oldValueArrayOfRecipes);
-
+// retourne l'ancienne valeur de la liste des mots clefs
                         return listingAllKeywords(oldValueArrayOfRecipes);
 
                    }
@@ -130,6 +155,7 @@ function handleTags(arrayOfAllElements, arrayOfRecipes){
     }
 
 
+// getTheUserinput = obtenir l'entrée utilisateur
     function getTheUserinput(){
 
          const allinputs = document.querySelectorAll(".filters-tags-area-input");
