@@ -140,15 +140,14 @@ label img .container_logo {
 main {
     display: flex;  
     flex-wrap: wrap;  
-    gap: 50px;
-    justify-content: space-between;  
+    gap: 50px;  
     margin: 0px 5px 0px 5px; 
 }
 
 .recipe_article {
     height: 325px;
     min-width: 380px;
-    max-width: 380px;
+    width:calc((100% / 3) - (100px / 3));
     position: relative;
     cursor: pointer;
 }
@@ -382,13 +381,7 @@ main {
     padding-right: 1.8rem;
     color:#ffffff;
   }
-  
-  #filters-tags-area ul li:hover {
-    /* overflow: unset; */
-    padding-right: 2.5rem;
-    /* text-overflow: unset;
-    white-space: unset; */
-  }
+
 
   ::-webkit-scrollbar {
     width: 6px !important;
