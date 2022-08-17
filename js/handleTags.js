@@ -77,11 +77,11 @@ function handleTags(arrayOfAllElements, arrayOfRecipes){
 
             oldValueArrayOfRecipes = [...arrayOfRecipes];
 
-            arrayOfUstensiles = filterUstensiles(arrayOfRecipes, ustensile);
+            arrayOfRecipes = filterUstensiles(arrayOfRecipes, ustensile);
 
             displayRecipes(arrayOfRecipes) 
 
-            listingAllKeywords(arrayOfUstensiles);
+            listingAllKeywords(arrayOfRecipes);
 
             deleteTag();
 
