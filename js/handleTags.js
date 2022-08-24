@@ -9,8 +9,6 @@ function handleTags(arrayOfAllElements, arrayOfRecipes){
 
      let oldValueArrayOfRecipes;
 
-     const copyArrayOfRecipes = [...arrayOfRecipes];
-
     /* ArrayOfAllElements[0] c'est le tableau des ingredients
 
        ArrayOfAllElements[1]  c'est le tableau des appareils
@@ -25,8 +23,6 @@ function handleTags(arrayOfAllElements, arrayOfRecipes){
           if(event.target !== event.currentTarget){
 // récupération du texte de l'événement cible
               const ingredient = event.target.textContent;
-// La méthode Element.remove() retire l'élément courant du DOM.
-            //   event.target.remove();
 
               displayTag(ingredient, "Ingredients"); 
 
@@ -141,9 +137,23 @@ function handleTags(arrayOfAllElements, arrayOfRecipes){
                         const tag = event.target.parentNode;
                         // je retire le tag 
                         tag.remove();
-// j'affiche l'ancienne valeur du tableaux des recettes 
+
+                        if(document.querySelectorAll(".tag").length === 0){
+
+                            displayRecipes(recipes);
+
+                            // retourne l'ancienne valeur de la liste des mots clefs
+
+                            return listingAllKeywords(recipes);
+
+                        } 
+                        
+                        // j'affiche l'ancienne valeur du tableaux des recettes 
+        
                         displayRecipes(oldValueArrayOfRecipes);
-// retourne l'ancienne valeur de la liste des mots clefs
+
+                        // retourne l'ancienne valeur de la liste des mots clefs
+
                         return listingAllKeywords(oldValueArrayOfRecipes);
 
                    }
