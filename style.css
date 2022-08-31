@@ -158,6 +158,7 @@ main {
     height: 178px;
     width:100%;
     background: #C7BEBE;
+    background-position: center;
     border-radius: 6px 6px 0px 0px;
 }
 
@@ -280,7 +281,7 @@ main {
 #filters-tags-area details{
 
      width:170px;
-     height:69px;
+     height: 55px;
      border-radius:5px;
      position: relative;
      padding: 1rem;
@@ -309,7 +310,7 @@ main {
 #filters-tags-area details summary {
     align-items: center;
     display: flex;
-    height: 2.4rem;
+    height:  1.3rem;
     justify-content: space-between;
     line-height: 2.4rem;
     width: 8.1rem;
