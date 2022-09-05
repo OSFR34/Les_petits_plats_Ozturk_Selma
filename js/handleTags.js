@@ -127,15 +127,15 @@ function handleTags(arrayOfAllElements, arrayOfRecipes){
 
 // FERMETURE DES TAGS
     function deleteTag(){
-// je place un clique sur le parent de tous les tags
+
         document.querySelector("#tags").onclick = (event)=>{
-// si je clique sur le parent et que je touche un de ses enfant 
+
              if(event.target !== event.currentTarget){
-// si ma cible est égale à "img_croix")
+
                    if(event.target.className === "img_croix"){
-// / récupère le parent de la cible 
+
                         const tag = event.target.parentNode;
-                        // je retire le tag 
+                      
                         tag.remove();
 
                         if(document.querySelectorAll(".tag").length === 0){
@@ -151,12 +151,11 @@ function handleTags(arrayOfAllElements, arrayOfRecipes){
         
                         displayRecipes(oldValueArrayOfRecipes);
 
-                        // retourne l'ancienne valeur de la liste des mots clefs
+                        // retourne la liste des mots clefs
 
                         return listingAllKeywords(oldValueArrayOfRecipes);
 
                    }
-
              }
 
         }
@@ -168,13 +167,11 @@ function handleTags(arrayOfAllElements, arrayOfRecipes){
     function getTheUserinput(){
 
          const allinputs = document.querySelectorAll(".filters-tags-area-input");
-// le deuxième paramètre index va permettre à la fctio filterDetails de savoir sur quel tableau il doit aller chez les éléments
 
          allinputs.forEach((input, index)=>{
 
                 input.addEventListener("input", ()=>{
-                    // input.value permet de récupérer les caractères saisies dans l'input
-
+               
                       const filteredArray = filterDetails(input.value, arrayOfAllElements[index]);
 
                       const inputNextSiblingUl = input.nextElementSibling;
@@ -188,8 +185,4 @@ function handleTags(arrayOfAllElements, arrayOfRecipes){
     } 
 
     getTheUserinput();
-
-    
-
-
 }

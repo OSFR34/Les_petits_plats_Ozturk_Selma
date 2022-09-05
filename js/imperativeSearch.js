@@ -57,9 +57,7 @@ function imperativeSearchProgramming(userInput){
                                 
                          resultIngredients.push(recipes[i]);
         
-                    }
-
-                  
+                    }                  
 
                 }
 
@@ -109,8 +107,7 @@ function imperativeSearchProgramming(userInput){
         
                 return resolve(result);
             
-        });
-    
+        });    
     
     });
 }
