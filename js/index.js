@@ -1,4 +1,4 @@
-// avant d'éxécuter le code JS, on s'assure que le dom est chargé( que le html est bien chargé)
+// avant d'éxécuter le code JS, on s'assure que le dom est chargé
 
 document.addEventListener("DOMContentLoaded", ()=>{
 
@@ -9,11 +9,9 @@ document.addEventListener("DOMContentLoaded", ()=>{
     const userInput = document.querySelector("#search");
 
 
-// écouteur d'évènement pour récupérer tous ce qui sera saisi dans l'input. 
+// Récupération de l'input
     userInput.addEventListener("input", function(){
-        // test : concole.log(this.value) 
-
-        // ici this vaut userInput - si la valeur est inférieur à 3 caractères, on ne fait rien
+     
            if(this.value.length < 3 && this.value.length > 0){
 
                  return false;
@@ -38,17 +36,10 @@ document.addEventListener("DOMContentLoaded", ()=>{
                 return displayNoRecipes(resultMessage);
             }
 
-               displayRecipes(response) //même résultat en mettant displayRecipes(result) result est le même que celui en fin de la page searchFunctionnalProgramming.js
+               displayRecipes(response) 
 
                listingAllKeywords(response);
 
-
            });
-
-       
-
-
-    });
-    
- 
+    });    
 });

@@ -5,7 +5,8 @@ function handleTags(arrayOfAllElements, arrayOfRecipes){
      const parentListeAppareils = document.querySelector("#liste-appareils");
 
      const parentListeUstensiles = document.querySelector("#liste-ustensiles");
-// ajout de cette variable pour pouvoir récupérer l'ancienne valeur tableau des ingrédients avant la recherche, ainsi lorsque l'on cliquera sur la croix du tag, ça entrainera en plus de fermeture du tag, l'affichage des recettes avant la recherche.
+
+// ajout de cette variable pour pouvoir récupérer l'ancienne valeur tableau des ingrédients avant la recherche, ainsi lorsque l'on cliquera sur la croix du tag, ça entrainera l'affichage des recettes avant la recherche.
 
      let oldValueArrayOfRecipes;
 
@@ -16,12 +17,11 @@ function handleTags(arrayOfAllElements, arrayOfRecipes){
        ArrayOfAllElements[2] c'est le tableau des ustensiles
 
     */
-// fonctionnement au clique sur la recherche des ingrédients
+
     parentListeIngredients.onclick = (event)=>{
-// !== inégalité strite 
-// La propriété currentTarget fait toujours référence à l'élément dont l'écouteur d'événement a déclenché l'événement, par opposition à la propriété target , qui renvoie l'élément qui a déclenché l'événement.  
+
           if(event.target !== event.currentTarget){
-// récupération du texte de l'événement cible
+
               const ingredient = event.target.textContent;
 
               displayTag(ingredient, "Ingredients"); 
@@ -30,7 +30,7 @@ function handleTags(arrayOfAllElements, arrayOfRecipes){
 
               arrayOfRecipes = filterIngredients(arrayOfRecipes,ingredient);
 
-              displayRecipes(arrayOfRecipes) //même résultat en mettant displayRecipes(result) result est le même que celui en fin de la page searchFunctionnalProgramming.js
+              displayRecipes(arrayOfRecipes)
 
               listingAllKeywords(arrayOfRecipes);
 
@@ -141,8 +141,7 @@ function handleTags(arrayOfAllElements, arrayOfRecipes){
                         if(document.querySelectorAll(".tag").length === 0){
 
                             displayRecipes(recipes);
-
-                            // retourne l'ancienne valeur de la liste des mots clefs
+                           
 
                             return listingAllKeywords(recipes);
 

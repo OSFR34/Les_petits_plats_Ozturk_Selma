@@ -1,3 +1,4 @@
+// affichage des mots clés de recherche
 function displayDetails(arrayToDisplay, elementToInsert){
 
     let html = "";

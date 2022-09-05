@@ -15,7 +15,7 @@ function imperativeSearchProgramming(userInput){
                 for(let i=0; i<j; i++){
 
                     if(recipes[i].name.toLowerCase().includes(userInput) === true) {
-                        // La méthode push() ajoute un ou plusieurs éléments à la fin d'un tableau et retourne la nouvelle taille du tableau.
+                      
 
                         recipesName.push(recipes[i]);
 
@@ -92,9 +92,7 @@ function imperativeSearchProgramming(userInput){
         }
 
         Promise.all([resultRecipesName(), resultRecipesIngredients(),resultRecipesDescription()]).then((result)=>{
-            //  operateur spread permet en ajoutant ... devant un tableau ou une itération de récupérer ts les éléments d'un tableau
-            // ci-dessous concaténation des ts les éléments des tableaux result dont l'index est 0 1 et 2.
-
+          
                 result = [...result[0], ...result[1], ...result[2]];
     
                 if(result.length === 0){

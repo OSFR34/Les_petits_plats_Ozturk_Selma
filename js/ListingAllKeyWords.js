@@ -2,22 +2,20 @@ function listingAllKeywords(arrayOfRecipes){
 
         // RECUPERE LA LISTE DE TOUS LES INGREDIENTS
 
-    // contiendra ts les ingrédients y compris les doublons
+ 
     const allIngredients = [];
-    // i pour itération tant que les objets que les objets (du tableau) sont inférieur à la longueur du tableau, puis à la fin d'une itération continuer en ajoutant 1.
+
     for (let i=0; i<arrayOfRecipes.length; i++) {
-    // ds recipes on récupère l'index sur lequel on est, ainsi que l'élément ingredients qui est lui même un tableau ds le tableau recipes
+    
         let ingredients = arrayOfRecipes[i].ingredients; 
-    // méthode map() crée un nouveau tableau avec les résultats de l'appel d'une fonction fournie sur chaque élément du tableau appelant
+   
         ingredients.map(({ingredient}) => {
-            // La méthode .push() ajoute un ou plusieurs éléments à la fin d'un tableau et retourne la nouvelle taille du tableau.
-            // La méthode .toLowerCase() remplace toutes les majuscules en minuscules.
+           
             allIngredients.push(`${ingredient.toLowerCase()}`);
             
         });
     }
-    // Ajout de  Array.from pour de créer un nouveau tableau à partir d'un autre. 
-    // dans la console obtient array au lieu de set
+  
     const ingredientsNoDuplicates = Array.from(new Set(allIngredients));
 
 
@@ -29,7 +27,7 @@ function listingAllKeywords(arrayOfRecipes){
         allAppliances.push(appliances);
     }
     const appliancesNoDuplicates = Array.from(new Set(allAppliances));
-    // console.log(appliancesNoDuplicates);
+  
 
     // RECUPERE LA LISTE DE TOUS LES USTENSILES
 
@@ -64,6 +62,8 @@ function listingAllKeywords(arrayOfRecipes){
 
     }
 
+    // Affichage de la liste des appareils
+
     function fillAppliances(appliancesArray){
 
 
@@ -91,6 +91,7 @@ function listingAllKeywords(arrayOfRecipes){
 
     }
 
+    // Affichage de la liste des ustensiles
     function fillUstensils(ustensilsArray){
 
 
@@ -117,7 +118,7 @@ function listingAllKeywords(arrayOfRecipes){
 
     }
 
-
+// récupère l'ensemble des tableaux filtrer par titre par appareil par ustensils sans doublon et les recettes correspondantes aux tags.
     Promise.all([fillIngredients(filterByTitle(ingredientsNoDuplicates)), fillAppliances(filterByTitle(appliancesNoDuplicates)), fillUstensils(filterByTitle(ustensilsNoDuplicates))]).then((result)=>{         
             
         const arrayOfAllElements = [ingredientsNoDuplicates, appliancesNoDuplicates, ustensilsNoDuplicates];
