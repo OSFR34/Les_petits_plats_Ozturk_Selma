@@ -75,9 +75,7 @@ function listingAllKeywords(arrayOfRecipes){
 
     function fillAppliances(appliancesArray){
 
-
         return new Promise((resolve)=>{
-
 
             let html = "";
 
@@ -95,8 +93,7 @@ function listingAllKeywords(arrayOfRecipes){
 
             resolve("Appareils ajoutés");
 
-
-    });
+        });
 
     }
 
