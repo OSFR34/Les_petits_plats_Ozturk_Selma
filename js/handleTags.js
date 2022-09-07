@@ -1,193 +1,194 @@
 function handleTags(arrayOfAllElements, arrayOfRecipes){
 
-     const parentListeIngredients = document.querySelector("#liste-ingredients");
+    const parentListeIngredients = document.querySelector("#liste-ingredients");
 
-     const parentListeAppareils = document.querySelector("#liste-appareils");
+    const parentListeAppareils = document.querySelector("#liste-appareils");
 
-     const parentListeUstensiles = document.querySelector("#liste-ustensiles");
-
-     let oldValueArrayOfRecipes;
-
-        console.log(selectedTags)
-
-    /* ArrayOfAllElements[0] c'est le tableau des ingredients
-
-       ArrayOfAllElements[1]  c'est le tableau des appareils
-
-       ArrayOfAllElements[2] c'est le tableau des ustensiles
-
-    */
-    parentListeIngredients.onclick = (event)=>{
-
-          if(event.target !== event.currentTarget){
-
-              const ingredient = event.target.textContent;
-
-              displayTag(ingredient, "Ingredients"); 
-
-              oldValueArrayOfRecipes = [...arrayOfRecipes];
-
-              arrayOfRecipes = filterIngredients(arrayOfRecipes,ingredient);
-
-              displayRecipes(arrayOfRecipes)
-
-              listingAllKeywords(arrayOfRecipes);
-
-              deleteTag();
-          }
-        
-    };
-  
+    const parentListeUstensiles = document.querySelector("#liste-ustensiles");
     
+    // Récupération de l'ancienne valeur du tableau des recettes avant la recherche.
+    let oldValueArrayOfRecipes;
 
-    parentListeAppareils.onclick = (event)=>{
-      
-        if(event.target !== event.currentTarget){
+      console.log(selectedTags)
 
-            const appareil = event.target.textContent;
+   /* ArrayOfAllElements[0] c'est le tableau des ingredients
 
-            displayTag(appareil, "Appareils");
+      ArrayOfAllElements[1]  c'est le tableau des appareils
 
-            oldValueArrayOfRecipes = [...arrayOfRecipes];
+      ArrayOfAllElements[2] c'est le tableau des ustensiles
+   */
 
-            arrayOfRecipes = filterAppareils(arrayOfRecipes, appareil);
+   parentListeIngredients.onclick = (event)=>{
 
-            displayRecipes(arrayOfRecipes);
+         if(event.target !== event.currentTarget){
 
-            listingAllKeywords(arrayOfRecipes);
+             const ingredient = event.target.textContent;
 
-            deleteTag();
+             displayTag(ingredient, "Ingredients"); 
 
-        }
-      
-    };
+             oldValueArrayOfRecipes = [...arrayOfRecipes];
 
-    parentListeUstensiles.onclick = (event)=>{
-      
-        if(event.target !== event.currentTarget){
+             arrayOfRecipes = filterIngredients(arrayOfRecipes,ingredient);
 
-            const ustensile = event.target.textContent;
+             displayRecipes(arrayOfRecipes) 
 
-            displayTag(ustensile, "Ustensiles");
+             listingAllKeywords(arrayOfRecipes);
 
-            oldValueArrayOfRecipes = [...arrayOfRecipes];
+             deleteTag();
+         }       
+   };   
 
-            arrayOfRecipes = filterUstensiles(arrayOfRecipes, ustensile);
+   parentListeAppareils.onclick = (event)=>{
+     
+       if(event.target !== event.currentTarget){
 
-            displayRecipes(arrayOfRecipes) 
+           const appareil = event.target.textContent;
 
-            listingAllKeywords(arrayOfRecipes);
+           displayTag(appareil, "Appareils");
 
-            deleteTag();
+           oldValueArrayOfRecipes = [...arrayOfRecipes];
 
-        }
-      
-    };
+           arrayOfRecipes = filterAppareils(arrayOfRecipes, appareil);
 
+           displayRecipes(arrayOfRecipes);
 
-    function displayTag(tagName, tagCategory){
-// on vérifie si le tag que l'on veut ajouter a déjà été selectionné ou pas
+           listingAllKeywords(arrayOfRecipes);
 
-        if(selectedTags.includes(tagName.toLowerCase()) === true){
+           deleteTag();
+       }     
+   };
 
-            return false;
-        }
-        
-        let color = "";
+   parentListeUstensiles.onclick = (event)=>{
+     
+       if(event.target !== event.currentTarget){
 
-        if(tagCategory === "Ingredients"){
+           const ustensile = event.target.textContent;
 
-            color = "#3282F7";
+           displayTag(ustensile, "Ustensiles");
 
-        }
+           oldValueArrayOfRecipes = [...arrayOfRecipes];
 
-        if(tagCategory === "Appareils"){
+           arrayOfRecipes = filterUstensiles(arrayOfRecipes, ustensile);
 
-            color = "#68D9A4";
+           displayRecipes(arrayOfRecipes) 
 
-        }
+           listingAllKeywords(arrayOfRecipes);
 
-        if(tagCategory === "Ustensiles"){
+           deleteTag();
+       }     
+   };
 
-             color = "#ED6454";
+   function displayTag(tagName, tagCategory){
 
-        }
+       // On vérifie si le tag que l'on veut ajouter a  deja été selectionné ou pas.
 
+       if(selectedTags.includes(tagName.toLowerCase()) === true){
 
-        const tag = `
-        
-        <div class="tag" style= "background-color:${color}" data-category="${tagCategory}">
-          
-            <span>${tagName}</span>
+           return false;
+
+       }
        
-            <img class="img_croix" src="img/icone-croix-annuler.png" alt="croix pour annuler">
-        
-        </div>
-        
-        `;
+       let color = "";
 
-        document.querySelector("#tags").insertAdjacentHTML("beforeend", tag);
+       if(tagCategory === "Ingredients"){
 
-    }
+           color = "#3282F7";
+       }
+
+       if(tagCategory === "Appareils"){
+
+           color = "#68D9A4";
+       }
+
+       if(tagCategory === "Ustensiles"){
+
+            color = "#ED6454";
+       }
+
+       const tag = `
+       
+       <div class="tag" style= "background-color:${color}" data-category="${tagCategory}">
+         
+           <span>${tagName}</span>
+      
+           <img class="img_croix" src="img/icone-croix-annuler.png" alt="croix pour annuler">
+       
+       </div>
+       
+       `;
+
+       selectedTags.push(tagName);
+
+       document.querySelector("#tags").insertAdjacentHTML("beforeend", tag);
+   }
 
 // FERMETURE DES TAGS
-    function deleteTag(){
+   function deleteTag(){
 
-        document.querySelector("#tags").onclick = (event)=>{
+       document.querySelector("#tags").onclick = (event)=>{
 
-             if(event.target !== event.currentTarget){
+            if(event.target !== event.currentTarget){
 
-                   if(event.target.className === "img_croix"){
+                  if(event.target.className === "img_croix"){
 
-                        const tag = event.target.parentNode;
+                       const tag = event.target.parentNode;
+
+                       // Ici on enlève le tag du tableau des tags déjà selectionnés
+
+                      const tagName = tag.querySelector("span").textContent;
                       
-                        tag.remove();
+                      const tagIndex = selectedTags.findIndex((tag)=>{
 
-                        if(document.querySelectorAll(".tag").length === 0){
+                            return tag.toLowerCase() === tagName.toLowerCase();
 
-                            displayRecipes(recipes);
-                           
+                      });
 
-                            return listingAllKeywords(recipes);
+                      selectedTags.splice(tagIndex, 1);
+                  
+                       tag.remove();
 
-                        } 
-                        
-                        // j'affiche l'ancienne valeur du tableaux des recettes 
-        
-                        displayRecipes(oldValueArrayOfRecipes);
+                       if(document.querySelectorAll(".tag").length === 0){
 
-                        // retourne la liste des mots clefs
+                           displayRecipes(recipes);
 
-                        return listingAllKeywords(oldValueArrayOfRecipes);
+                           return listingAllKeywords(recipes);
+                       } 
+                              
+                       displayRecipes(oldValueArrayOfRecipes);
 
-                   }
-             }
+                       return listingAllKeywords(oldValueArrayOfRecipes);
 
-        }
+                  }
 
-    }
+            }
+
+       }
+
+   }
 
 
-// getTheUserinput = obtenir l'entrée utilisateur
-    function getTheUserinput(){
 
-         const allinputs = document.querySelectorAll(".filters-tags-area-input");
+   function getTheUserinput(){
 
-         allinputs.forEach((input, index)=>{
+        const allinputs = document.querySelectorAll(".filters-tags-area-input");
 
-                input.addEventListener("input", ()=>{
-               
-                      const filteredArray = filterDetails(input.value, arrayOfAllElements[index]);
 
-                      const inputNextSiblingUl = input.nextElementSibling;
+        allinputs.forEach((input, index)=>{
 
-                      displayDetails(filteredArray, inputNextSiblingUl);
+               input.addEventListener("input", ()=>{
 
-                });
+                     const filteredArray = filterDetails(input.value, arrayOfAllElements[index]);
 
-         });
+                     const inputNextSiblingUl = input.nextElementSibling;
 
-    } 
+                     displayDetails(filteredArray, inputNextSiblingUl);
 
-    getTheUserinput();
+               });
+
+        });
+
+   } 
+
+   getTheUserinput();
+
 }
