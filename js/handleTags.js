@@ -6,9 +6,9 @@ function handleTags(arrayOfAllElements, arrayOfRecipes){
 
      const parentListeUstensiles = document.querySelector("#liste-ustensiles");
 
-// ajout de cette variable pour pouvoir récupérer l'ancienne valeur tableau des ingrédients avant la recherche, ainsi lorsque l'on cliquera sur la croix du tag, ça entrainera l'affichage des recettes avant la recherche.
-
      let oldValueArrayOfRecipes;
+
+        console.log(selectedTags)
 
     /* ArrayOfAllElements[0] c'est le tableau des ingredients
 
@@ -17,7 +17,6 @@ function handleTags(arrayOfAllElements, arrayOfRecipes){
        ArrayOfAllElements[2] c'est le tableau des ustensiles
 
     */
-
     parentListeIngredients.onclick = (event)=>{
 
           if(event.target !== event.currentTarget){
@@ -87,6 +86,12 @@ function handleTags(arrayOfAllElements, arrayOfRecipes){
 
 
     function displayTag(tagName, tagCategory){
+// on vérifie si le tag que l'on veut ajouter a déjà été selectionné ou pas
+
+        if(selectedTags.includes(tagName.toLowerCase()) === true){
+
+            return false;
+        }
         
         let color = "";
 

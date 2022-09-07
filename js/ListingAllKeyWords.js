@@ -24,7 +24,7 @@ function listingAllKeywords(arrayOfRecipes){
     const allAppliances = [];
     for (let i=0; i<arrayOfRecipes.length; i++) {
         let appliances = arrayOfRecipes[i].appliance;
-        allAppliances.push(appliances);
+        allAppliances.push(appliances.toLowerCase());
     }
     const appliancesNoDuplicates = Array.from(new Set(allAppliances));
   
@@ -34,8 +34,17 @@ function listingAllKeywords(arrayOfRecipes){
     const allUstensils = [];
     for (let i=0; i<arrayOfRecipes.length; i++) {
         let ustensils = arrayOfRecipes[i].ustensils;
+
+        allUstensils = ustensils.map((ustensil) => {
+
+            return ustensil.toLowerCase();
+
+        });
+
         allUstensils.push(ustensils);
     };
+
+        
 
     const ustensilsNoDuplicates = Array.from(new Set(allUstensils.flat()));
 
